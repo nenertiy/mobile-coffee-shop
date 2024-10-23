@@ -1,35 +1,37 @@
 import { Tabs } from "expo-router";
 import React from "react";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { colors, fontSize } from "@/constants/colors";
 
-import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-import { Colors } from "@/constants/Colors";
-import { useColorScheme } from "@/hooks/useColorScheme";
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function TabsNavigation() {
   return (
     <Tabs
       screenOptions={{
-        headerStyle: {
-          backgroundColor: "#f4611d",
+        tabBarActiveTintColor: colors.primary,
+        tabBarLabelStyle: {
+          fontSize: fontSize.xs,
+          fontWeight: "500",
         },
-        headerTintColor: "#fff",
-        headerTitleStyle: {
-          fontWeight: "bold",
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: "rgb(255,255,255)",
+          position: "absolute",
+          borderTopWidth: 0,
+          borderRadius: 14,
+          marginHorizontal: 6,
+          marginBottom: 6,
+          paddingTop: 4,
+          paddingBottom: 4,
         },
-
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: true,
-      }}
-    >
+      }}>
       <Tabs.Screen
-        name="index"
+        name="(menu)"
         options={{
           title: "Menu",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "home" : "home-outline"}
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="home"
+              size={24}
               color={color}
             />
           ),
@@ -37,12 +39,13 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="category"
+        name="categories"
         options={{
           title: "Category",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "cube" : "cube-outline"}
+          tabBarIcon: ({ color }) => (
+            <Ionicons
+              name="cube"
+              size={24}
               color={color}
             />
           ),
@@ -53,9 +56,10 @@ export default function TabLayout() {
         name="cart"
         options={{
           title: "Cart",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "cart" : "cart-outline"}
+          tabBarIcon: ({ color }) => (
+            <Ionicons
+              name="cart"
+              size={24}
               color={color}
             />
           ),
