@@ -10,7 +10,7 @@ const CategoriesScreenLayout = () => {
           name="index"
           options={{
             headerTitle: "Category",
-            // headerShown: false,
+            headerShown: false,
           }}
         />
       </Stack>
