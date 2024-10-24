@@ -10,7 +10,7 @@ const MenuScreenLayout = () => {
           name="index"
           options={{
             headerTitle: "Menu",
-            // headerShown: false,
+            headerShown: false,
           }}
         />
       </Stack>

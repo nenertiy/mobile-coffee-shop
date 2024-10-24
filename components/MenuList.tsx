@@ -1,31 +1,18 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import axios from "axios";
+import React, { FC } from "react";
+import { Dimensions, StyleSheet, View } from "react-native";
 import MenuItem from "./MenuItem";
+import { Product } from "@/types";
 
-const MenuList = () => {
-  const fetchProducts = async () => {
-    const response = await axios.get("http://localhost:3000/api/products");
-    return response.data;
-  };
+interface MenuListProps {
+  data: Product[];
+}
 
-  const { data } = useQuery({ queryKey: ["products"], queryFn: fetchProducts });
-
+const MenuList: FC<MenuListProps> = ({ data }) => {
   return (
     <View style={styles.list}>
-      {data?.map((item) => (
+      {data?.map((item: Product) => (
         <MenuItem
-          title={item.name}
-          img={item.img}
-          price={item.price}
-          category={item.productCategory?.name}
-          key={item.id}
-        />
-      ))}
-      {data?.map((item) => (
-        <MenuItem
-          title={item.name}
+          name={item.name}
           img={item.img}
           price={item.price}
           category={item.productCategory?.name}
@@ -36,16 +23,19 @@ const MenuList = () => {
   );
 };
 
+const { height, width } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
   list: {
-    justifyContent: "space-evenly",
+    backgroundColor: "rgb(248, 248, 248)",
     alignItems: "center",
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    rowGap: 20,
-    marginBottom: 80,
+    gap: width * 0.04,
+    marginBottom: 150,
     marginTop: 20,
+    marginHorizontal: width * 0.0399,
   },
 });
 

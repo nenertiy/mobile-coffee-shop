@@ -1,30 +1,52 @@
-import MenuItem from "@/components/MenuItem";
 import MenuList from "@/components/MenuList";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { Dimensions, StyleSheet, Text, TextInput, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
 export default function HomeScreen() {
-  // const fetchProducts = async () => {
-  //   const response = await axios.get("http://localhost:3000/api/products");
-  //   return response.data;
-  // };
+  const [searchValue, setSearchValue] = useState<string>("");
 
-  // const { data, isSuccess } = useQuery({ queryKey: ["products"], queryFn: fetchProducts });
+  const fetchProducts = async () => {
+    const query = searchValue ? `?search=${searchValue}` : "";
+    const response = await axios.get(
+      `https://backend-coffee-shop.onrender.com/api/products${query}`
+    );
+    return response.data;
+  };
 
-  // console.log(data[0].name);
+  const { data } = useQuery({
+    queryKey: ["products", searchValue],
+    queryFn: fetchProducts,
+  });
 
   return (
-    <ScrollView style={styles.container}>
-      <Text>Menu</Text>
-      <MenuList />
-    </ScrollView>
+    <View style={styles.container}>
+      <Text style={styles.title}>Menu</Text>
+      <ScrollView>
+        <TextInput
+          style={styles.input}
+          value={searchValue}
+          onChangeText={setSearchValue}
+          placeholder="Search products"
+        />
+        <MenuList data={data} />
+      </ScrollView>
+    </View>
   );
 }
+const { height, width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
-  container: { backgroundColor: "rgb(248, 248, 248)" },
+  container: { backgroundColor: "rgb(248, 248, 248)", width: width, height: height },
+  title: {
+    fontSize: 28,
+    fontWeight: "500",
+    letterSpacing: 4,
+    marginTop: height * 0.05,
+    marginHorizontal: width * 0.039,
+  },
   list: {
     justifyContent: "space-evenly",
     alignItems: "center",
@@ -32,7 +54,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     rowGap: 20,
-    marginBottom: 80,
-    marginTop: 20,
+  },
+  input: {
+    height: height * 0.06,
+    marginHorizontal: width * 0.039,
+    marginTop: height * 0.025,
+    width: width * 0.92,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0, 0.50)",
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
   },
 });

@@ -1,8 +1,9 @@
-import React from "react";
-import { Alert, Image, Pressable, StyleSheet, Text, View } from "react-native";
+import React, { FC } from "react";
+import { Alert, Dimensions, Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "@/constants/colors";
+import { Product } from "@/types";
 
-const MenuItem = ({ title, category, price, img }) => {
+const MenuItem: FC<Product> = ({ name, category, price, img }) => {
   return (
     <View style={styles.container}>
       <View style={styles.img_container}>
@@ -13,7 +14,7 @@ const MenuItem = ({ title, category, price, img }) => {
           }}
         />
       </View>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{name}</Text>
       <Text style={styles.subtitle}>{category}</Text>
       <Text style={styles.price}>${price}</Text>
       <Pressable
@@ -25,15 +26,16 @@ const MenuItem = ({ title, category, price, img }) => {
   );
 };
 
+const { height, width } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     display: "flex",
     flexDirection: "column",
     backgroundColor: "rgb(254, 254, 254)",
-    width: 232,
-    padding: 16,
-    paddingBottom: 24,
+    padding: width * 0.02,
+    paddingBottom: 16,
     borderRadius: 18,
     shadowColor: "#00000020",
     shadowOpacity: 1,
@@ -42,15 +44,14 @@ const styles = StyleSheet.create({
   },
 
   img_container: {
-    width: 200,
-    height: 200,
+    width: width * 0.4,
     display: "flex",
     justifyContent: "center",
   },
 
   img: {
-    width: 200,
-    height: 200,
+    width: width * 0.4,
+    aspectRatio: 1,
     marginHorizontal: "auto",
     borderRadius: 14,
   },

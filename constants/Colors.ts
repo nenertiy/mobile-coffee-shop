@@ -1,7 +1,6 @@
 export const colors = {
   primary: "rgb(0, 107, 0)",
-  // primary: "black",
-  background: "#fff",
+  background: "rgb(248, 248, 248)",
   text: "#000",
   textMuted: "#9ca3af",
   icon: "#000",
