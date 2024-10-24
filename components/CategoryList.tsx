@@ -10,34 +10,35 @@ const CategoryList: FC = () => {
     return response.data;
   };
 
-  const { data: categories } = useQuery({
+  const { data: categories, isSuccess } = useQuery({
     queryKey: ["categories"],
     queryFn: fetchCategories,
   });
 
   return (
     <View style={styles.container}>
-      {categories.map(
-        (category: {
-          id: number;
-          name: string;
-          subCategory: { id: number; img: string; name: string }[];
-        }) => (
-          <View key={category.id}>
-            <Text style={styles.category}>{category.name}</Text>
-            <View style={styles.list}>
-              {category?.subCategory?.map((subcategory) => (
-                <CategoryItem
-                  key={subcategory.id}
-                  id={subcategory.id}
-                  img={subcategory.img}
-                  name={subcategory.name}
-                />
-              ))}
+      {isSuccess &&
+        categories?.map(
+          (category: {
+            id: number;
+            name: string;
+            subCategory: { id: number; img: string; name: string }[];
+          }) => (
+            <View key={category.id}>
+              <Text style={styles.category}>{category.name}</Text>
+              <View style={styles.list}>
+                {category?.subCategory?.map((subcategory) => (
+                  <CategoryItem
+                    key={subcategory.id}
+                    id={subcategory.id}
+                    img={subcategory.img}
+                    name={subcategory.name}
+                  />
+                ))}
+              </View>
             </View>
-          </View>
-        )
-      )}
+          )
+        )}
     </View>
   );
 };
