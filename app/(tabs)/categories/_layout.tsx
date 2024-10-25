@@ -13,6 +13,13 @@ const CategoriesScreenLayout = () => {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="[id]"
+          options={{
+            headerTitle: "Products",
+            headerShown: true,
+          }}
+        />
       </Stack>
     </View>
   );

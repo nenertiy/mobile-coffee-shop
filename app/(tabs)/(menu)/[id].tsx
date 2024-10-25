@@ -42,7 +42,6 @@ const ProductPage: FC = () => {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color={colors.primary} />
-        {/* <Text>Loading Product...</Text> */}
       </View>
     );
   }

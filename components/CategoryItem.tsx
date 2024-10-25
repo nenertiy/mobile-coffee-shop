@@ -1,20 +1,23 @@
 import { Category } from "@/types";
+import { Link } from "expo-router";
 import React, { FC } from "react";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 
-const CategoryItem: FC<Category> = ({ img, name }) => {
+const CategoryItem: FC<Category> = ({ img, name, id }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.img_container}>
-        <Image
-          style={styles.img}
-          source={{
-            uri: img,
-          }}
-        />
+    <Link href={`/categories/${id}`}>
+      <View style={styles.container}>
+        <View style={styles.img_container}>
+          <Image
+            style={styles.img}
+            source={{
+              uri: img,
+            }}
+          />
+        </View>
+        <Text style={styles.title}>{name}</Text>
       </View>
-      <Text style={styles.title}>{name}</Text>
-    </View>
+    </Link>
   );
 };
 
