@@ -1,8 +1,16 @@
 import MenuList from "@/components/MenuList";
+import { colors } from "@/constants/Colors";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
-import { Dimensions, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  ActivityIndicator,
+  Dimensions,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
 export default function HomeScreen() {
@@ -16,7 +24,7 @@ export default function HomeScreen() {
     return response.data;
   };
 
-  const { data } = useQuery({
+  const { data, isFetching, isLoading } = useQuery({
     queryKey: ["products", searchValue],
     queryFn: fetchProducts,
   });
@@ -25,13 +33,21 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Menu</Text>
       <ScrollView>
-        <TextInput
-          style={styles.input}
-          value={searchValue}
-          onChangeText={setSearchValue}
-          placeholder="Search products"
-        />
-        <MenuList data={data} />
+        {isLoading || isFetching ? (
+          <View style={styles.indicatorWrapper}>
+            <ActivityIndicator size="large" color={colors.primary} />
+          </View>
+        ) : (
+          <View>
+            <TextInput
+              style={styles.input}
+              value={searchValue}
+              onChangeText={setSearchValue}
+              placeholder="Search products"
+            />
+            <MenuList data={data} />
+          </View>
+        )}
       </ScrollView>
     </View>
   );
@@ -39,7 +55,11 @@ export default function HomeScreen() {
 const { height, width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
-  container: { backgroundColor: "rgb(248, 248, 248)", width: width, height: height },
+  container: {
+    backgroundColor: "rgb(248, 248, 248)",
+    width: width,
+    height: height,
+  },
   title: {
     fontSize: 28,
     fontWeight: "500",
@@ -66,5 +86,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingHorizontal: 10,
     paddingVertical: 6,
+  },
+  indicatorWrapper: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    marginTop: height * 0.4,
   },
 });

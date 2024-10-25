@@ -1,23 +1,42 @@
 import React, { FC } from "react";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Dimensions,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import CategoryItem from "./CategoryItem";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { colors } from "@/constants/Colors";
 
 const CategoryList: FC = () => {
   const fetchCategories = async () => {
-    const response = await axios.get(`https://backend-coffee-shop.onrender.com/api/categories`);
+    const response = await axios.get(
+      `https://backend-coffee-shop.onrender.com/api/categories`
+    );
     return response.data;
   };
 
-  const { data: categories, isSuccess } = useQuery({
+  const {
+    data: categories,
+    isSuccess,
+    isFetching,
+    isLoading,
+  } = useQuery({
     queryKey: ["categories"],
     queryFn: fetchCategories,
   });
 
   return (
     <View style={styles.container}>
-      {isSuccess &&
+      {isLoading || isFetching ? (
+        <View style={styles.indicatorWrapper}>
+          <ActivityIndicator size="large" color={colors.primary} />
+        </View>
+      ) : (
+        isSuccess &&
         categories?.map(
           (category: {
             id: number;
@@ -38,7 +57,8 @@ const CategoryList: FC = () => {
               </View>
             </View>
           )
-        )}
+        )
+      )}
     </View>
   );
 };
@@ -68,6 +88,13 @@ const styles = StyleSheet.create({
     gap: width * 0.04,
     marginBottom: 20,
     marginTop: 20,
+  },
+  indicatorWrapper: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    marginTop: height * 0.4,
   },
 });
 

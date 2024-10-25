@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import React from "react";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { colors, fontSize } from "@/constants/colors";
+import { colors, fontSize } from "@/constants/Colors";
 
 export default function TabsNavigation() {
   return (
@@ -23,17 +23,14 @@ export default function TabsNavigation() {
           paddingTop: 4,
           paddingBottom: 4,
         },
-      }}>
+      }}
+    >
       <Tabs.Screen
         name="(menu)"
         options={{
           title: "Menu",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="home"
-              size={24}
-              color={color}
-            />
+            <MaterialCommunityIcons name="home" size={24} color={color} />
           ),
         }}
       />
@@ -43,11 +40,7 @@ export default function TabsNavigation() {
         options={{
           title: "Category",
           tabBarIcon: ({ color }) => (
-            <Ionicons
-              name="cube"
-              size={24}
-              color={color}
-            />
+            <Ionicons name="cube" size={24} color={color} />
           ),
         }}
       />
@@ -57,11 +50,7 @@ export default function TabsNavigation() {
         options={{
           title: "Cart",
           tabBarIcon: ({ color }) => (
-            <Ionicons
-              name="cart"
-              size={24}
-              color={color}
-            />
+            <Ionicons name="cart" size={24} color={color} />
           ),
         }}
       />

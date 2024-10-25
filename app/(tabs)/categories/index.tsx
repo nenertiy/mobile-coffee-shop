@@ -16,7 +16,11 @@ export default function CategoryScreen() {
 const { height, width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
-  container: { backgroundColor: "rgb(248, 248, 248)", width: width, height: height },
+  container: {
+    backgroundColor: "rgb(248, 248, 248)",
+    width: width,
+    height: height,
+  },
   title: {
     fontSize: 28,
     fontWeight: "500",
