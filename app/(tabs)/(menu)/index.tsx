@@ -6,9 +6,11 @@ import { useState } from "react";
 import {
   ActivityIndicator,
   Dimensions,
+  RefreshControl,
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -32,22 +34,44 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Menu</Text>
-      <ScrollView>
-        {isLoading || isFetching ? (
-          <View style={styles.indicatorWrapper}>
-            <ActivityIndicator size="large" color={colors.primary} />
-          </View>
-        ) : (
-          <View>
-            <TextInput
-              style={styles.input}
-              value={searchValue}
-              onChangeText={setSearchValue}
-              placeholder="Search products"
-            />
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={isFetching} onRefresh={fetchProducts} />
+        }
+      >
+        <View>
+          <TextInput
+            style={styles.input}
+            value={searchValue}
+            onChangeText={setSearchValue}
+            placeholder="Search products"
+          />
+          <TouchableOpacity
+            style={styles.reset_container}
+            onPress={() => setSearchValue("")}
+          >
+            <Text style={styles.reset}>Reset</Text>
+          </TouchableOpacity>
+          {/* {data?.length > 0 ? (
             <MenuList data={data} />
-          </View>
-        )}
+          ) : (
+            <View style={styles.nothing_container}>
+              <Text style={styles.nothing}>Nothing</Text>
+            </View>
+          )} */}
+
+          {isLoading || isFetching ? (
+            <View style={styles.indicatorWrapper}>
+              <ActivityIndicator size="large" color={colors.primary} />
+            </View>
+          ) : data.length > 0 ? (
+            <MenuList data={data} />
+          ) : (
+            <View style={styles.nothing_container}>
+              <Text style={styles.nothing}>Nothing</Text>
+            </View>
+          )}
+        </View>
       </ScrollView>
     </View>
   );
@@ -67,6 +91,13 @@ const styles = StyleSheet.create({
     marginTop: height * 0.05,
     marginHorizontal: width * 0.039,
   },
+  reset_container: {
+    marginHorizontal: width * 0.044,
+    marginTop: 6,
+    display: "flex",
+    flexDirection: "row-reverse",
+  },
+  reset: {},
   list: {
     justifyContent: "space-evenly",
     alignItems: "center",
@@ -86,12 +117,29 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingHorizontal: 10,
     paddingVertical: 6,
+    flexDirection: "row",
+    alignItems: "center",
   },
+
   indicatorWrapper: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
     marginTop: height * 0.4,
+  },
+
+  nothing_container: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    marginTop: height * 0.35,
+  },
+
+  nothing: {
+    fontSize: 20,
+    fontWeight: "400",
+    letterSpacing: 1,
   },
 });

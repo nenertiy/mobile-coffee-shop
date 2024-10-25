@@ -13,6 +13,13 @@ const MenuScreenLayout = () => {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="[id]"
+          options={{
+            headerTitle: "Product",
+            headerShown: true,
+          }}
+        />
       </Stack>
     </View>
   );

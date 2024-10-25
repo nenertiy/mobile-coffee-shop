@@ -17,6 +17,7 @@ const MenuList: FC<MenuListProps> = ({ data }) => {
           price={item.price}
           category={item.productCategory?.name}
           key={item.id}
+          id={item.id}
         />
       ))}
     </View>

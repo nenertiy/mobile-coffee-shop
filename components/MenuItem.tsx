@@ -10,28 +10,31 @@ import {
 } from "react-native";
 import { colors } from "@/constants/Colors";
 import { Product } from "@/types";
+import { Link } from "expo-router";
 
-const MenuItem: FC<Product> = ({ name, category, price, img }) => {
+const MenuItem: FC<Product> = ({ name, category, price, img, id }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.img_container}>
-        <Image
-          style={styles.img}
-          source={{
-            uri: img,
-          }}
-        />
+    <Link href={`/(menu)/${id}`}>
+      <View style={styles.container}>
+        <View style={styles.img_container}>
+          <Image
+            style={styles.img}
+            source={{
+              uri: img,
+            }}
+          />
+        </View>
+        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.subtitle}>{category}</Text>
+        <Text style={styles.price}>${price}</Text>
+        <Pressable
+          style={styles.button}
+          onPress={() => Alert.alert("Added to cart")}
+        >
+          <Text style={styles.button_text}>Add to cart</Text>
+        </Pressable>
       </View>
-      <Text style={styles.title}>{name}</Text>
-      <Text style={styles.subtitle}>{category}</Text>
-      <Text style={styles.price}>${price}</Text>
-      <Pressable
-        style={styles.button}
-        onPress={() => Alert.alert("Added to cart")}
-      >
-        <Text style={styles.button_text}>Add to cart</Text>
-      </Pressable>
-    </View>
+    </Link>
   );
 };
 

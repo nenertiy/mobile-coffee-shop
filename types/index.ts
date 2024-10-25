@@ -1,9 +1,10 @@
 export interface Product {
+  description?: string;
   name: string;
   category: string | undefined;
   price: number;
   img: string;
-  id?: number;
+  id?: number | undefined;
   productCategory?: {
     id: number;
     name: string;
