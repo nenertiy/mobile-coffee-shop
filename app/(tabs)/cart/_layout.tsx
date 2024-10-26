@@ -10,7 +10,7 @@ const CartScreenLayout = () => {
           name="index"
           options={{
             headerTitle: "Cart",
-            // headerShown: false,
+            headerShown: false,
           }}
         />
       </Stack>

@@ -7,8 +7,6 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const queryClient = new QueryClient();
 
-// SplashScreen.preventAutoHideAsync();
-
 const App = () => {
   return (
     <SafeAreaProvider>

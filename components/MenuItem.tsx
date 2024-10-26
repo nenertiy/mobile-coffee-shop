@@ -3,8 +3,11 @@ import { Alert, Dimensions, Image, Pressable, StyleSheet, Text, View } from "rea
 import { colors } from "@/constants/colors";
 import { Product } from "@/types";
 import { Link } from "expo-router";
+import { addToCart } from "@/utils/api";
+import { useAuthStore } from "@/store/authStore";
 
 const MenuItem: FC<Product> = ({ name, category, price, img, id }) => {
+  const userId = useAuthStore((state) => state.userId);
   return (
     <Link href={`/(menu)/${id}`}>
       <View style={styles.container}>
@@ -21,7 +24,7 @@ const MenuItem: FC<Product> = ({ name, category, price, img, id }) => {
         <Text style={styles.price}>${price}</Text>
         <Pressable
           style={styles.button}
-          onPress={() => Alert.alert("Added to cart")}>
+          onPress={() => addToCart(Number(userId), Number(id))}>
           <Text style={styles.button_text}>Add to cart</Text>
         </Pressable>
       </View>
