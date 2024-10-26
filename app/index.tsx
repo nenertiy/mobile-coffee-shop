@@ -57,14 +57,14 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: height,
+    height: height * 1,
     paddingTop: height * 0.2,
     backgroundColor: "#1e3932",
   },
   box: {
     display: "flex",
     alignItems: "center",
-    marginBottom: height * 0.3,
+    paddingBottom: height * 0.3,
   },
   title: {
     fontSize: 60,

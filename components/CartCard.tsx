@@ -65,7 +65,7 @@ const CartCard: FC<CartCardProps> = ({ name, price, img, id, quantity, userId, r
         <TouchableOpacity>
           <Pressable
             style={({ pressed }) => [
-              { backgroundColor: pressed ? "rgba(0, 107, 0, 0.0)" : colors.primary },
+              { backgroundColor: pressed ? "rgba(0, 107, 0, 0.7)" : colors.primary },
               styles.countButton,
             ]}
             onPress={handleDecrease}>

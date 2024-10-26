@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "CoffeeShop",
-    "slug": "CoffeeShop",
+    "slug": "mobile-coffee-shop",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

@@ -5,7 +5,6 @@ import {
   Image,
   StyleSheet,
   Dimensions,
-  Alert,
   Pressable,
   ActivityIndicator,
   ScrollView,
@@ -15,9 +14,13 @@ import { useLocalSearchParams } from "expo-router";
 import { Product } from "@/types";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { useAuthStore } from "@/store/authStore";
+import { addToCart } from "@/utils/api";
 
 const ProductPage: FC = () => {
   const { id } = useLocalSearchParams();
+
+  const userId = useAuthStore((state) => state.userId);
 
   const productId = typeof id === "string" ? parseInt(id, 10) : null;
 
@@ -54,8 +57,8 @@ const ProductPage: FC = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <ScrollView>
+    <ScrollView>
+      <View style={styles.container}>
         <Image
           source={{ uri: product.img }}
           style={styles.image}
@@ -65,24 +68,27 @@ const ProductPage: FC = () => {
         <Text style={styles.description}>{product.description}</Text>
         <Text style={styles.price}>${product.price.toFixed(2)}</Text>
         <Pressable
-          style={styles.button}
-          onPress={() => Alert.alert("Added to cart")}>
+          style={({ pressed }) => [
+            { backgroundColor: pressed ? "rgba(0, 107, 0, 0.7)" : colors.primary },
+            styles.button,
+          ]}
+          onPress={() => addToCart(Number(userId), Number(id))}>
           <Text style={styles.button_text}>Add to cart</Text>
         </Pressable>
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 };
 
-const { width } = Dimensions.get("window");
+const { height, width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "#fff",
     alignItems: "center",
     padding: 16,
     marginHorizontal: width * 0.039,
+    marginBottom: height * 0.08,
   },
   loadingContainer: {
     flex: 1,
@@ -125,7 +131,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     borderRadius: 12,
     width: "100%",
-    backgroundColor: colors.primary,
+    // backgroundColor: colors.primary,
     paddingHorizontal: 10,
     paddingVertical: 8,
   },
