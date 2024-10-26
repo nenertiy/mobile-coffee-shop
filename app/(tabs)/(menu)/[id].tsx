@@ -10,7 +10,7 @@ import {
   ActivityIndicator,
   ScrollView,
 } from "react-native";
-import { colors } from "@/constants/Colors";
+import { colors } from "@/constants/colors";
 import { useLocalSearchParams } from "expo-router";
 import { Product } from "@/types";
 import axios from "axios";
@@ -41,7 +41,10 @@ const ProductPage: FC = () => {
   if (isLoading || isFetching) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.primary} />
+        <ActivityIndicator
+          size="large"
+          color={colors.primary}
+        />
       </View>
     );
   }
@@ -53,15 +56,17 @@ const ProductPage: FC = () => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Image source={{ uri: product.img }} style={styles.image} />
+        <Image
+          source={{ uri: product.img }}
+          style={styles.image}
+        />
         <Text style={styles.title}>{product.name}</Text>
         <Text style={styles.category}>{product?.productCategory?.name}</Text>
         <Text style={styles.description}>{product.description}</Text>
         <Text style={styles.price}>${product.price.toFixed(2)}</Text>
         <Pressable
           style={styles.button}
-          onPress={() => Alert.alert("Added to cart")}
-        >
+          onPress={() => Alert.alert("Added to cart")}>
           <Text style={styles.button_text}>Add to cart</Text>
         </Pressable>
       </ScrollView>

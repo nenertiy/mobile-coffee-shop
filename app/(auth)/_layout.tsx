@@ -1,14 +1,12 @@
-import { Stack, Tabs } from "expo-router";
+import { Stack } from "expo-router";
 import React from "react";
-import { colors, fontSize } from "@/constants/Colors";
 
 export default function AuthLayout() {
   return (
     <Stack
       screenOptions={{
         headerShown: false,
-      }}
-    >
+      }}>
       <Stack.Screen
         name="sign-in"
         options={{
@@ -19,7 +17,7 @@ export default function AuthLayout() {
       <Stack.Screen
         name="sign-up"
         options={{
-          headerShown: true,
+          headerShown: false,
         }}
       />
     </Stack>

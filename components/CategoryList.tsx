@@ -1,21 +1,13 @@
 import React, { FC } from "react";
-import {
-  ActivityIndicator,
-  Dimensions,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from "react-native";
 import CategoryItem from "./CategoryItem";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { colors } from "@/constants/Colors";
+import { colors } from "@/constants/colors";
 
 const CategoryList: FC = () => {
   const fetchCategories = async () => {
-    const response = await axios.get(
-      `https://backend-coffee-shop.onrender.com/api/categories`
-    );
+    const response = await axios.get(`https://backend-coffee-shop.onrender.com/api/categories`);
     return response.data;
   };
 
@@ -33,7 +25,10 @@ const CategoryList: FC = () => {
     <View style={styles.container}>
       {isLoading || isFetching ? (
         <View style={styles.indicatorWrapper}>
-          <ActivityIndicator size="large" color={colors.primary} />
+          <ActivityIndicator
+            size="large"
+            color={colors.primary}
+          />
         </View>
       ) : (
         isSuccess &&

@@ -1,14 +1,6 @@
 import React, { FC } from "react";
-import {
-  Alert,
-  Dimensions,
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import { colors } from "@/constants/Colors";
+import { Alert, Dimensions, Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { colors } from "@/constants/colors";
 import { Product } from "@/types";
 import { Link } from "expo-router";
 
@@ -29,8 +21,7 @@ const MenuItem: FC<Product> = ({ name, category, price, img, id }) => {
         <Text style={styles.price}>${price}</Text>
         <Pressable
           style={styles.button}
-          onPress={() => Alert.alert("Added to cart")}
-        >
+          onPress={() => Alert.alert("Added to cart")}>
           <Text style={styles.button_text}>Add to cart</Text>
         </Pressable>
       </View>
