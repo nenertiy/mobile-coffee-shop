@@ -1,5 +1,13 @@
 import React, { FC } from "react";
-import { Dimensions, Image, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  Dimensions,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { colors } from "@/constants/colors";
 import { useQueryClient } from "@tanstack/react-query";
 import { decreaseQuantity, removeFromCart } from "@/utils/api";
@@ -54,25 +62,35 @@ const CartCard: FC<CartCardProps> = ({ name, price, img, id, quantity, userId, r
       <Text style={styles.title}>{name}</Text>
       <Text style={styles.price}>${(Math.round(price * quantity * 10) / 10).toFixed(2)}</Text>
       <View style={styles.countContainer}>
-        <Pressable
-          style={styles.countButton}
-          onPress={handleDecrease}>
-          <MaterialCommunityIcons
-            name="minus"
-            color={"#fff"}
-            size={20}
-          />
-        </Pressable>
+        <TouchableOpacity>
+          <Pressable
+            style={({ pressed }) => [
+              { backgroundColor: pressed ? "rgba(0, 107, 0, 0.0)" : colors.primary },
+              styles.countButton,
+            ]}
+            onPress={handleDecrease}>
+            <MaterialCommunityIcons
+              name="minus"
+              color={"#fff"}
+              size={20}
+            />
+          </Pressable>
+        </TouchableOpacity>
         <Text style={styles.countText}>{quantity}</Text>
-        <Pressable
-          style={styles.countButton}
-          onPress={handleIncrease}>
-          <MaterialCommunityIcons
-            name="plus"
-            color={"#fff"}
-            size={20}
-          />
-        </Pressable>
+        <TouchableOpacity onPress={handleIncrease}>
+          <Pressable
+            style={({ pressed }) => [
+              { backgroundColor: pressed ? "rgba(0, 107, 0, 0.7)" : colors.primary },
+              styles.countButton,
+            ]}
+            onPress={handleIncrease}>
+            <MaterialCommunityIcons
+              name="plus"
+              color={"#fff"}
+              size={20}
+            />
+          </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -130,7 +148,7 @@ const styles = StyleSheet.create({
 
   countButton: {
     borderRadius: 12,
-    backgroundColor: colors.primary,
+    // backgroundColor: colors.primary,
     paddingHorizontal: 8,
     paddingVertical: 8,
   },

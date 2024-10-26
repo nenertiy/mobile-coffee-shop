@@ -42,11 +42,10 @@ const SignInForm: FC = () => {
       const response = await auth({ email: data.email, password: data.password });
       console.log(response);
       login(response.access_token, response.id);
-      reset(); // Reset the form only after a successful login
+      reset();
       router.push("/(menu)");
-    } catch (error) {
-      console.error(error); // Log error for debugging
-      Alert.alert("Error"); // Show specific error message
+    } catch {
+      Alert.alert("Error");
     } finally {
       setLoading(false);
     }
@@ -73,7 +72,7 @@ const SignInForm: FC = () => {
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
-              accessibilityLabel="Email input" // Accessibility label
+              accessibilityLabel="Email input"
             />
           )}
         />
@@ -89,7 +88,7 @@ const SignInForm: FC = () => {
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
-              accessibilityLabel="Password input" // Accessibility label
+              accessibilityLabel="Password input"
             />
           )}
         />
@@ -108,7 +107,7 @@ const SignInForm: FC = () => {
         </TouchableOpacity>
         <Text
           style={styles.link}
-          onPress={() => router.push("/registration")}>
+          onPress={() => router.push("/sign-up")}>
           Don't have an account? Register
         </Text>
       </View>
@@ -145,7 +144,7 @@ const styles = StyleSheet.create({
     borderColor: "#cccccc",
     borderWidth: 1,
     borderRadius: 8,
-    marginBottom: 5,
+    marginBottom: 15,
     paddingHorizontal: 10,
     fontSize: 16,
   },

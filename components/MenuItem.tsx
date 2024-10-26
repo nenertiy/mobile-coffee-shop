@@ -23,7 +23,10 @@ const MenuItem: FC<Product> = ({ name, category, price, img, id }) => {
         <Text style={styles.subtitle}>{category}</Text>
         <Text style={styles.price}>${price}</Text>
         <Pressable
-          style={styles.button}
+          style={({ pressed }) => [
+            { backgroundColor: pressed ? "rgba(0, 107, 0, 0.9)" : colors.primary },
+            styles.button,
+          ]}
           onPress={() => addToCart(Number(userId), Number(id))}>
           <Text style={styles.button_text}>Add to cart</Text>
         </Pressable>
@@ -84,7 +87,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     borderRadius: 12,
     width: "100%",
-    backgroundColor: colors.primary,
+    // backgroundColor: colors.primary,
     paddingHorizontal: 10,
     paddingVertical: 8,
   },

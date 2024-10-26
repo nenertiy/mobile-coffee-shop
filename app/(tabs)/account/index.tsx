@@ -24,7 +24,10 @@ export default function AccountScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Account</Text>
       <Pressable
-        style={styles.button}
+        style={({ pressed }) => [
+          { backgroundColor: pressed ? "rgba(0, 107, 0, 0.9)" : colors.primary },
+          styles.button,
+        ]}
         onPress={() => handleLogout()}
         disabled={loading}>
         {loading ? (
@@ -51,7 +54,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 16,
     borderRadius: 12,
-    backgroundColor: colors.primary,
+    // backgroundColor: colors.primary,
     paddingHorizontal: 10,
     paddingVertical: 8,
   },
