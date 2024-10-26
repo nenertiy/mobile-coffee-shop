@@ -32,6 +32,7 @@ const CategoryPage = () => {
     isSuccess,
     isFetching,
     isLoading,
+    refetch,
   } = useQuery({
     queryKey: ["categories", categoryId],
     queryFn: () => fetchProductsByCategory(categoryId!),
@@ -55,7 +56,7 @@ const CategoryPage = () => {
         refreshControl={
           <RefreshControl
             refreshing={isFetching}
-            onRefresh={() => fetchProductsByCategory(categoryId!)}
+            onRefresh={refetch}
           />
         }>
         {isSuccess && products.length > 0 ? (

@@ -26,7 +26,7 @@ export default function HomeScreen() {
     return response.data;
   };
 
-  const { data, isFetching, isLoading } = useQuery({
+  const { data, isFetching, isLoading, refetch } = useQuery({
     queryKey: ["products", searchValue],
     queryFn: fetchProducts,
   });
@@ -38,7 +38,7 @@ export default function HomeScreen() {
         refreshControl={
           <RefreshControl
             refreshing={isFetching}
-            onRefresh={fetchProducts}
+            onRefresh={refetch}
           />
         }>
         <View>
@@ -53,13 +53,6 @@ export default function HomeScreen() {
             onPress={() => setSearchValue("")}>
             <Text style={styles.reset}>Reset</Text>
           </TouchableOpacity>
-          {/* {data?.length > 0 ? (
-            <MenuList data={data} />
-          ) : (
-            <View style={styles.nothing_container}>
-              <Text style={styles.nothing}>Nothing</Text>
-            </View>
-          )} */}
 
           {isLoading || isFetching ? (
             <View style={styles.indicatorWrapper}>
