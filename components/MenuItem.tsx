@@ -19,7 +19,11 @@ const MenuItem: FC<Product> = ({ name, category, price, img, id }) => {
             }}
           />
         </View>
-        <Text style={styles.title}>{name}</Text>
+        <Text
+          style={styles.title}
+          numberOfLines={1}>
+          {name}
+        </Text>
         <Text style={styles.subtitle}>{category}</Text>
         <Text style={styles.price}>${price}</Text>
         <Pressable
@@ -70,6 +74,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "500",
     marginTop: 8,
+    maxWidth: width * 0.4,
+    overflow: "hidden",
   },
 
   subtitle: {

@@ -1,6 +1,14 @@
 import { colors } from "@/constants/colors";
 import { useAuthStore } from "@/store/authStore";
-import { Pressable, StyleSheet, Text, View, Alert, ActivityIndicator } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  Alert,
+  ActivityIndicator,
+  Dimensions,
+} from "react-native";
 import { useState } from "react";
 import { router } from "expo-router";
 
@@ -40,11 +48,16 @@ export default function AccountScreen() {
   );
 }
 
+const { height, width } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "rgb(248, 248, 248)",
+    height: height,
+    width: width,
   },
   title: {
     fontSize: 24,

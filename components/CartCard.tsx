@@ -59,7 +59,11 @@ const CartCard: FC<CartCardProps> = ({ name, price, img, id, quantity, userId, r
           }}
         />
       </View>
-      <Text style={styles.title}>{name}</Text>
+      <Text
+        style={styles.title}
+        numberOfLines={1}>
+        {name}
+      </Text>
       <Text style={styles.price}>${(Math.round(price * quantity * 10) / 10).toFixed(2)}</Text>
       <View style={styles.countContainer}>
         <TouchableOpacity>
@@ -131,6 +135,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "500",
     marginTop: 8,
+    maxWidth: width * 0.4,
+    overflow: "hidden",
   },
 
   price: {
