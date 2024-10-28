@@ -1,6 +1,14 @@
 import React, { FC } from "react";
-import { Alert, Dimensions, Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { colors } from "@/constants/colors";
+import {
+  Alert,
+  Dimensions,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { colors } from "@/constants/Colors";
 import { Product } from "@/types";
 import { Link } from "expo-router";
 import { addToCart } from "@/utils/api";
@@ -19,19 +27,22 @@ const MenuItem: FC<Product> = ({ name, category, price, img, id }) => {
             }}
           />
         </View>
-        <Text
-          style={styles.title}
-          numberOfLines={1}>
+        <Text style={styles.title} numberOfLines={1}>
           {name}
         </Text>
         <Text style={styles.subtitle}>{category}</Text>
         <Text style={styles.price}>${price}</Text>
         <Pressable
           style={({ pressed }) => [
-            { backgroundColor: pressed ? "rgba(0, 107, 0, 0.9)" : colors.primary },
+            {
+              backgroundColor: pressed
+                ? "rgba(0, 107, 0, 0.9)"
+                : colors.primary,
+            },
             styles.button,
           ]}
-          onPress={() => addToCart(Number(userId), Number(id))}>
+          onPress={() => addToCart(Number(userId), Number(id))}
+        >
           <Text style={styles.button_text}>Add to cart</Text>
         </Pressable>
       </View>

@@ -1,5 +1,5 @@
 import MenuList from "@/components/MenuList";
-import { colors } from "@/constants/colors";
+import { colors } from "@/constants/Colors";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
@@ -36,11 +36,9 @@ export default function HomeScreen() {
       <Text style={styles.title}>Menu</Text>
       <ScrollView
         refreshControl={
-          <RefreshControl
-            refreshing={isFetching}
-            onRefresh={refetch}
-          />
-        }>
+          <RefreshControl refreshing={isFetching} onRefresh={refetch} />
+        }
+      >
         <View>
           <TextInput
             style={styles.input}
@@ -50,16 +48,14 @@ export default function HomeScreen() {
           />
           <TouchableOpacity
             style={styles.reset_container}
-            onPress={() => setSearchValue("")}>
+            onPress={() => setSearchValue("")}
+          >
             <Text style={styles.reset}>Reset</Text>
           </TouchableOpacity>
 
           {isLoading || isFetching ? (
             <View style={styles.indicatorWrapper}>
-              <ActivityIndicator
-                size="large"
-                color={colors.primary}
-              />
+              <ActivityIndicator size="large" color={colors.primary} />
             </View>
           ) : data.length > 0 ? (
             <MenuList data={data} />

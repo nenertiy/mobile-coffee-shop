@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
   ScrollView,
 } from "react-native";
-import { colors } from "@/constants/colors";
+import { colors } from "@/constants/Colors";
 import { useLocalSearchParams } from "expo-router";
 import { Product } from "@/types";
 import axios from "axios";
@@ -44,10 +44,7 @@ const ProductPage: FC = () => {
   if (isLoading || isFetching) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator
-          size="large"
-          color={colors.primary}
-        />
+        <ActivityIndicator size="large" color={colors.primary} />
       </View>
     );
   }
@@ -59,20 +56,22 @@ const ProductPage: FC = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Image
-          source={{ uri: product.img }}
-          style={styles.image}
-        />
+        <Image source={{ uri: product.img }} style={styles.image} />
         <Text style={styles.title}>{product.name}</Text>
         <Text style={styles.category}>{product?.productCategory?.name}</Text>
         <Text style={styles.description}>{product.description}</Text>
         <Text style={styles.price}>${product.price.toFixed(2)}</Text>
         <Pressable
           style={({ pressed }) => [
-            { backgroundColor: pressed ? "rgba(0, 107, 0, 0.7)" : colors.primary },
+            {
+              backgroundColor: pressed
+                ? "rgba(0, 107, 0, 0.7)"
+                : colors.primary,
+            },
             styles.button,
           ]}
-          onPress={() => addToCart(Number(userId), Number(id))}>
+          onPress={() => addToCart(Number(userId), Number(id))}
+        >
           <Text style={styles.button_text}>Add to cart</Text>
         </Pressable>
       </View>

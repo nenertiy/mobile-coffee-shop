@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { colors } from "@/constants/colors";
+import { colors } from "@/constants/Colors";
 import { useQueryClient } from "@tanstack/react-query";
 import { decreaseQuantity, removeFromCart } from "@/utils/api";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -23,7 +23,15 @@ interface CartCardProps {
   refetch: () => void;
 }
 
-const CartCard: FC<CartCardProps> = ({ name, price, img, id, quantity, userId, refetch }) => {
+const CartCard: FC<CartCardProps> = ({
+  name,
+  price,
+  img,
+  id,
+  quantity,
+  userId,
+  refetch,
+}) => {
   const queryClient = useQueryClient();
 
   const handleDecrease = async () => {
@@ -59,40 +67,42 @@ const CartCard: FC<CartCardProps> = ({ name, price, img, id, quantity, userId, r
           }}
         />
       </View>
-      <Text
-        style={styles.title}
-        numberOfLines={1}>
+      <Text style={styles.title} numberOfLines={1}>
         {name}
       </Text>
-      <Text style={styles.price}>${(Math.round(price * quantity * 10) / 10).toFixed(2)}</Text>
+      <Text style={styles.price}>
+        ${(Math.round(price * quantity * 10) / 10).toFixed(2)}
+      </Text>
       <View style={styles.countContainer}>
         <TouchableOpacity>
           <Pressable
             style={({ pressed }) => [
-              { backgroundColor: pressed ? "rgba(0, 107, 0, 0.7)" : colors.primary },
+              {
+                backgroundColor: pressed
+                  ? "rgba(0, 107, 0, 0.7)"
+                  : colors.primary,
+              },
               styles.countButton,
             ]}
-            onPress={handleDecrease}>
-            <MaterialCommunityIcons
-              name="minus"
-              color={"#fff"}
-              size={20}
-            />
+            onPress={handleDecrease}
+          >
+            <MaterialCommunityIcons name="minus" color={"#fff"} size={20} />
           </Pressable>
         </TouchableOpacity>
         <Text style={styles.countText}>{quantity}</Text>
         <TouchableOpacity onPress={handleIncrease}>
           <Pressable
             style={({ pressed }) => [
-              { backgroundColor: pressed ? "rgba(0, 107, 0, 0.7)" : colors.primary },
+              {
+                backgroundColor: pressed
+                  ? "rgba(0, 107, 0, 0.7)"
+                  : colors.primary,
+              },
               styles.countButton,
             ]}
-            onPress={handleIncrease}>
-            <MaterialCommunityIcons
-              name="plus"
-              color={"#fff"}
-              size={20}
-            />
+            onPress={handleIncrease}
+          >
+            <MaterialCommunityIcons name="plus" color={"#fff"} size={20} />
           </Pressable>
         </TouchableOpacity>
       </View>
