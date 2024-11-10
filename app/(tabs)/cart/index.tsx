@@ -17,9 +17,11 @@ const CartPage: FC = () => {
 
   let totalPrice: number = 0;
 
-  data?.cartProduct?.forEach((product: { quantity: number; product: { price: number } }) => {
-    totalPrice += product.quantity * product.product.price;
-  });
+  data?.cartProduct?.forEach(
+    (product: { quantity: number; product: { price: number } }) => {
+      totalPrice += product.quantity * product.product.price;
+    }
+  );
 
   return (
     <View style={styles.container}>
@@ -63,7 +65,9 @@ const CartPage: FC = () => {
           <View style={styles.line}></View>
           <View style={styles.totalContainer}>
             <Text style={styles.total}>Total</Text>
-            <Text style={styles.totalPrice}>${Math.round(totalPrice * 10) / 10}</Text>
+            <Text style={styles.totalPrice}>
+              ${Math.round(totalPrice * 10) / 10}
+            </Text>
           </View>
         </View>
       </ScrollView>
@@ -83,7 +87,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "500",
     letterSpacing: 4,
-    marginTop: height * 0.05,
+    marginTop: height * 0.06,
     marginHorizontal: width * 0.039,
   },
   cart: {
@@ -113,7 +117,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 8,
-    marginBottom: height * 0.1,
+    marginBottom: height * 0.12,
   },
   total: {
     fontSize: 20,

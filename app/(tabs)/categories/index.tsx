@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "500",
     letterSpacing: 4,
-    marginTop: height * 0.05,
+    marginTop: height * 0.06,
     marginHorizontal: width * 0.039,
   },
   list: {

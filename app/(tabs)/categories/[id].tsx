@@ -1,5 +1,5 @@
 import MenuList from "@/components/MenuList";
-import { colors } from "@/constants/Colors";
+import { colors } from "@/constants/colors";
 import { Product } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -42,7 +42,10 @@ const CategoryPage = () => {
   if (isLoading || isFetching) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.primary} />
+        <ActivityIndicator
+          size="large"
+          color={colors.primary}
+        />
       </View>
     );
   }
@@ -51,11 +54,15 @@ const CategoryPage = () => {
     <View style={styles.container}>
       <ScrollView
         refreshControl={
-          <RefreshControl refreshing={isFetching} onRefresh={refetch} />
-        }
-      >
+          <RefreshControl
+            refreshing={isFetching}
+            onRefresh={refetch}
+          />
+        }>
         {isSuccess && products.length > 0 ? (
-          <MenuList data={products} />
+          <View style={styles.menu}>
+            <MenuList data={products} />
+          </View>
         ) : (
           <View style={styles.nothingContainer}>
             <Text style={styles.nothingText}>
@@ -81,6 +88,9 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     marginTop: height * 0.05,
     marginBottom: 12,
+  },
+  menu: {
+    marginBottom: height * 0.12,
   },
   loadingContainer: {
     flex: 1,

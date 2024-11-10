@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { colors } from "@/constants/Colors";
+import { colors } from "@/constants/colors";
 import { useQueryClient } from "@tanstack/react-query";
 import { decreaseQuantity, removeFromCart } from "@/utils/api";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -67,7 +67,9 @@ const CartCard: FC<CartCardProps> = ({
           }}
         />
       </View>
-      <Text style={styles.title} numberOfLines={1}>
+      <Text
+        style={styles.title}
+        numberOfLines={1}>
         {name}
       </Text>
       <Text style={styles.price}>
@@ -84,9 +86,12 @@ const CartCard: FC<CartCardProps> = ({
               },
               styles.countButton,
             ]}
-            onPress={handleDecrease}
-          >
-            <MaterialCommunityIcons name="minus" color={"#fff"} size={20} />
+            onPress={handleDecrease}>
+            <MaterialCommunityIcons
+              name="minus"
+              color={"#fff"}
+              size={20}
+            />
           </Pressable>
         </TouchableOpacity>
         <Text style={styles.countText}>{quantity}</Text>
@@ -100,9 +105,12 @@ const CartCard: FC<CartCardProps> = ({
               },
               styles.countButton,
             ]}
-            onPress={handleIncrease}
-          >
-            <MaterialCommunityIcons name="plus" color={"#fff"} size={20} />
+            onPress={handleIncrease}>
+            <MaterialCommunityIcons
+              name="plus"
+              color={"#fff"}
+              size={20}
+            />
           </Pressable>
         </TouchableOpacity>
       </View>

@@ -1,4 +1,4 @@
-import { colors } from "@/constants/Colors";
+import { colors } from "@/constants/colors";
 import { useAuthStore } from "@/store/authStore";
 import { Redirect, router } from "expo-router";
 import React, { useState, useEffect, FC } from "react";
@@ -23,7 +23,10 @@ const Welcome: FC = () => {
   if (loading) {
     return (
       <SafeAreaView style={[styles.container, { justifyContent: "center" }]}>
-        <ActivityIndicator size="large" color={colors.primary} />
+        <ActivityIndicator
+          size="large"
+          color={colors.primary}
+        />
       </SafeAreaView>
     );
   }
@@ -39,8 +42,7 @@ const Welcome: FC = () => {
         </View>
         <Pressable
           style={styles.button}
-          onPress={() => router.push("/sign-up")}
-        >
+          onPress={() => router.push("/sign-up")}>
           <Text style={styles.button_text}>Continue</Text>
         </Pressable>
       </View>

@@ -9,7 +9,7 @@ import {
 import CategoryItem from "./CategoryItem";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { colors } from "@/constants/Colors";
+import { colors } from "@/constants/colors";
 
 const CategoryList: FC = () => {
   const fetchCategories = async () => {
@@ -33,7 +33,10 @@ const CategoryList: FC = () => {
     <View style={styles.container}>
       {isLoading || isFetching ? (
         <View style={styles.indicatorWrapper}>
-          <ActivityIndicator size="large" color={colors.primary} />
+          <ActivityIndicator
+            size="large"
+            color={colors.primary}
+          />
         </View>
       ) : (
         isSuccess &&

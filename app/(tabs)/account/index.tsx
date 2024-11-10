@@ -1,4 +1,4 @@
-import { colors } from "@/constants/Colors";
+import { colors } from "@/constants/colors";
 import { useAuthStore } from "@/store/authStore";
 import {
   Pressable,
@@ -39,8 +39,7 @@ export default function AccountScreen() {
           styles.button,
         ]}
         onPress={() => handleLogout()}
-        disabled={loading}
-      >
+        disabled={loading}>
         {loading ? (
           <ActivityIndicator color="#fff" />
         ) : (
