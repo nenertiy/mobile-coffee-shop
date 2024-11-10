@@ -14,11 +14,17 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.yourcompany.yourappname"
+      "bundleIdentifier": "com.yourcompany.yourappname",
+      "runtimeVersion": {
+        "policy": "sdkVersion"
+      }
     },
     "android": {
       "package": "com.yourcompany.yourappname",
-      "versionCode": 1
+      "versionCode": 1,
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "web": {
       "bundler": "metro",
@@ -35,6 +41,9 @@
       "eas": {
         "projectId": "cef776d2-0896-4875-9c44-9b27731f4b0a"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/cef776d2-0896-4875-9c44-9b27731f4b0a"
     }
   }
 }
